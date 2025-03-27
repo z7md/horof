@@ -33,6 +33,8 @@ let arabicLetters = [
 
 const numbers = [0, 6, 7, 13, 14, 20, 21, 27, 28, 34, 40, 41, 47];
 const App = () => {
+    const [redHex,setRedHex]=useState([ ])
+    const [greenHex,setGreenHex]=useState([ ])
   const [hexData, setHexData] = useState(new Array(35).fill(""));
 
   // Function to generate random letters for each hexagon
@@ -54,6 +56,10 @@ const App = () => {
     console.log(lettersForGrid);
     setHexData(lettersForGrid); // Update the grid with the shuffled letters
   };
+  const refresh = ()=>{
+    setRedHex([])
+    setGreenHex([])
+  }
   useEffect(() => {
     assignLettersToHexagons();
   }, []); // Empty dependency array means this runs only once on mount
@@ -76,6 +82,10 @@ const App = () => {
               index={index}
               arabicLetters={item}
               className="hexagon"
+              redHex={redHex}
+              greenHex={greenHex}
+              setGreenHex={setGreenHex}
+              setRedHex={setRedHex}
             />
           ) : (
             <div className={`bg-red-500 hexagon select-none`}></div>
@@ -90,13 +100,20 @@ const App = () => {
         <div className={`bg-green-500 hexagon select-none mt-6`}></div>
         <div className={`bg-red-500 hexagon select-none`}></div>
       </div>
-
+        <div className="flex justify-center items-center gap-2">
       <button
         onClick={assignLettersToHexagons}
         className="mt-12 bg-blue-500 py-2 rounded-3xl text-xl text-white px-4"
       >
         إعادة ترتيب الحروف
       </button>
+      <button
+        onClick={refresh}
+        className="mt-12 bg-blue-500 py-2 rounded-3xl text-xl text-white px-4"
+      >
+         إعادة اللعبة
+      </button>
+      </div>
     </div>
   );
 };
