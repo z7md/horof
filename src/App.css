@@ -18,7 +18,7 @@
 }
 
 .hexagon {
-  width: 100px; /* same as hexagon width */
+  width: 80px; /* same as hexagon width */
   height: 55px; /* same as hexagon height */
   /* clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
   clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
@@ -30,7 +30,7 @@
 }
 .container {
   display: grid;
-    width: 515px;
+    width: 400px;
     height:370px;
     grid-gap: 0.5px;
     gap: 0.5px;
@@ -43,7 +43,7 @@
   padding: 6rem;
   min-height: 100vh;
   font-family: Tajawal;
-  zoom: 130%;
+  zoom: 75%;
 }
 html{
   background-color: black;
