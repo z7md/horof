@@ -3,15 +3,14 @@ import Hex from "./components/hex";
 import OpenAI from "openai";
 import { Confetti } from "./Confetti";
 const apiKey = import.meta.env.VITE_SOME_KEY;
-const BASE_URL=import.meta.env.BASE_URL_KEY
-const MODEL = import.meta.env.MODEL_KEY
+const BASE_URL=import.meta.env.VITE_URL_KEY
+const MODEL = import.meta.env.MODEL_KEY 
 
 const openai = new OpenAI({
-  baseURL: "https://openrouter.ai/api/v1",
+  baseURL: BASE_URL,
   apiKey: apiKey,
   dangerouslyAllowBrowser: true,
 });
-console.log(apiKey);
 let arabicLetters = [
   "أ",
   "ب",
