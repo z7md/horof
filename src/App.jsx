@@ -9,7 +9,6 @@ const MODEL = import.meta.env.MODEL_KEY
 const openai = new OpenAI({
   baseURL: BASE_URL,
   apiKey: apiKey,
-  dangerouslyAllowBrowser: true,
 });
 let arabicLetters = [
   "أ",
