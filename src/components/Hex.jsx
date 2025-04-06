@@ -111,6 +111,7 @@ const Hex = ({
     } else if (isConnectedPath(redHex, gridGraph, "red")) {
       setBtn(true)
     } else {
+      setBtn(false)
       winner;
     }
   }, [redHex, greenHex]);

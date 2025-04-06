@@ -14,6 +14,6 @@ export const Confetti = ({Btn}) => {
     return window.removeEventListener("resize", detectSize);
   });
   return (
-    <>{Btn &&<ReactConfetti width={windowDem.width} height={windowDem.height} >مبروووووك</ReactConfetti>}</>
+    <>{Btn &&<ReactConfetti width={windowDem.width} height={windowDem.height} ></ReactConfetti>}</>
   );
 };
