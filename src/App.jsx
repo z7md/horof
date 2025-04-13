@@ -310,14 +310,12 @@ const App = () => {
     : null;
   let categorize;
   orangeHex[0]
-    ? categorize = <div className="flex gap-2 text-white">
+    ? categorize = <div className="flex gap-2 text-white justify-center items-center ">
       {categoriesList.map(category => (
-        
-
           selectedCategories.includes(category)?
-          <div onClick={()=>handleCatClick(category)} className="p-2 border-white rounded-4xl text-white bg-[#323232d9] border">{category}</div>
+          <div onClick={()=>handleCatClick(category)} className="p-2 border-white rounded-4xl text-white bg-[#0285ff] min-w-fit  border cursor-pointer">{category}</div>
           :
-          <div className="p-2 border-white rounded-4xl text-white border text-center min-w-fit" onClick={()=>handleCatClick(category)}>{category}</div>
+          <div className="p-2 border-white rounded-4xl text-white border text-center min-w-fit cursor-pointer" onClick={()=>handleCatClick(category)}>{category}</div>
       ))}
     </div> : categorize = <div className="flex gap-2 text-white opacity-0">
       {categoriesList.map(category => (
