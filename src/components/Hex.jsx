@@ -44,6 +44,7 @@ const Hex = ({
     33: [26, 32], // Index 33 is connected to indices 26, 27, and 32
   };
 
+
   function isConnectedPath(indexes, gridGraph, color) {
     // Define which nodes are start and target nodes
     let startNodes = [1, 2, 3, 4, 5];
@@ -138,7 +139,7 @@ const Hex = ({
   if (orangeHex.includes(index)) {
     hex1 = (
       <div
-        className={"bg-[#ffae00] hexagon select-none "}
+        className={"bg-[#ffae00] hexagon select-none rubik"}
         onClick={() => handleClick()}
       >
         <p>{arabicLetters}</p>
@@ -147,7 +148,7 @@ const Hex = ({
   } else if (redHex.includes(index)) {
     hex1 = (
       <div
-        className={"bg-red-500 hexagon select-none"}
+        className={"bg-red-500 hexagon select-none rubik"}
         onClick={() => handleClick()}
       >
         <p>{arabicLetters}</p>
@@ -156,7 +157,7 @@ const Hex = ({
   } else if (greenHex.includes(index)) {
     hex1 = (
       <div
-        className={"bg-green-500 hexagon select-none "}
+        className={"bg-green-500 hexagon select-none rubik"}
         onClick={() => handleClick()}
       >
         <p>{arabicLetters}</p>
@@ -165,7 +166,7 @@ const Hex = ({
   } else {
     hex1 = (
       <div
-        className={"bg-gray-500 hexagon  select-none "}
+        className={"bg-gray-500 hexagon  select-none rubik"}
         onClick={() => handleClick()}
       >
         <p>{arabicLetters}</p>
@@ -174,9 +175,14 @@ const Hex = ({
   }
 
   return numbers.includes(index) ? (
-    <div className="mt-6">{hex1}</div>
+
+          <div className="mt-6">{hex1}</div>
+
+
   ) : (
-    <div onClick={() => handleClick()}>{hex1}</div>
+          <div onClick={() => handleClick()} className="">{hex1}</div>
+
+
   );
 };
 

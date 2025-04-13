@@ -6,16 +6,16 @@
 }
 
 .hexagon-container {
-  display: inline-block;
-  margin: 5px;
-  position: relative;
-  width: 100px; /* same as hexagon width */
-  height: 55px; /* same as hexagon height */
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  border: 2px solid black; /* Add a border around the hexagon */
-  overflow: hidden; /* Hide anything outside the hexagon shape */
-  overflow: hidden; /* Hide anything outside the hexagon shape */
+  position: absolute;
+
+  width: 100px;
+  height: 55px;
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
+
 
 .hexagon {
   width: 65px; /* same as hexagon width */
@@ -47,4 +47,11 @@
 }
 html{
   background-color: black;
+}
+
+.rubik {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }

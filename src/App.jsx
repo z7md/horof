@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Hex from "./components/hex";
 import OpenAI from "openai";
 import { Confetti } from "./Confetti";
+import { Footer } from "./components/Footer";
 const apiKey = import.meta.env.VITE_SOME_KEY;
 const BASE_URL=import.meta.env.VITE_URL_KEY
 const MODEL = import.meta.env.MODEL_KEY 
@@ -112,12 +113,12 @@ const App = () => {
   
       // تنظيف Markdown و LaTeX format
       responseText = responseText
-        .replace(/^```json\s*/i, "")
-        .replace(/^```/, "")
-        .replace(/```$/, "")
-        .replace(/\\boxed\s*{/, "")
-        .replace(/}$/, "")
-        .trim();
+      .replace(/^```json\s*/i, "") 
+      .replace(/^```/, "")         
+      .replace(/```$/, "")       
+      .replace(/\\boxed\s*{/, "") 
+      .replace(/}$/, "")         
+      .trim();
   
       // تأكد أن النص يبدأ بـ { وينتهي بـ }
       if (!responseText.startsWith("{")) {
@@ -294,6 +295,7 @@ const App = () => {
       <div className=" ml-[10%] flex justify-center items-center w-full">
         <Confetti Btn={Btn} />
       </div>
+      <Footer/>
     </div>
   );
 };
