@@ -86,89 +86,10 @@ const App = () => {
 
     const maxRetries = 3;
     const timeout = 300000; // 5 دقائق
-<<<<<<< HEAD
-  
-    // إعداد مهلة
-    const timeoutPromise = new Promise((_, reject) =>
-      setTimeout(() => {
-        controller.abort();
-        reject(
-          new Error("انتهت المهلة، لم يتم الحصول على استجابة في الوقت المحدد.")
-        );
-      }, timeout)
-    );
-  
-    // إعداد الطلب للمودل
-    const prompt = `
-  أنت مساعد ذكي. سيتم تزويدك بحرف عربي.
-  مهمتك هي:
-  1. اختيار كلمة عربية تبدأ بهذا الحرف (تجاهل "ال" التعريف).
-  2. إنشاء سؤال عام تكون هذه الكلمة إجابته.
-  3. إعادة النتيجة بصيغة JSON فقط، ولا شيء غير ذلك.
-  
-  مثال:
-  {
-    "question": "ما هو عكس الملح؟",
-    "answer": "السكر"
-  }
-  
-  الحرف هو: "${letter}"
-  `;
-  
-    const fetchQuestion = openai.chat.completions.create({
-      model: "deepseek/deepseek-chat-v3-0324:free",
-      messages: [
-        {
-          role: "system",
-          content: "You are a helpful assistant that responds only in valid JSON format."
-        },
-        {
-          role: "user",
-          content: prompt.trim()
-        }
-      ],
-      signal: controller.signal,
-    });
-  
-    try {
-      const completion = await Promise.race([fetchQuestion, timeoutPromise]);
-      setIsLoading(false);
-  
-      let responseText = completion.choices[0].message.content.trim();
-  
-      // تنظيف Markdown و LaTeX format
-      responseText = responseText
-      .replace(/^```json\s*/i, "") 
-      .replace(/^```/, "")         
-      .replace(/```$/, "")       
-      .replace(/\\boxed\s*{/, "") 
-      .replace(/}$/, "")         
-      .trim();
-  
-      // تأكد أن النص يبدأ بـ { وينتهي بـ }
-      if (!responseText.startsWith("{")) {
-        responseText = `{${responseText}}`;
-      }
-  
-      console.log("النص النهائي:", responseText);
-  
-      const data = JSON.parse(responseText);
-      const question = data.question;
-      const answer = data.answer;
-  
-      console.log("السؤال:", question);
-      console.log("الإجابة:", answer);
-      setQuestion(question);
-      setAnswer(answer);
-    } catch (error) {
-      setIsLoading(false);
-      console.error("🚫 خطأ:", error.message);
-=======
 
     function isValidAnswer(answer, letter) {
       const cleaned = answer.trim().replace(/^ال/, ""); // Remove "ال" if present
       return cleaned.startsWith(letter);
->>>>>>> df98a26d4e792a985ef85c30886d367616eaa35a
     }
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -390,7 +311,7 @@ const App = () => {
     : null;
   let categorize;
   orangeHex[0]
-    ? categorize = <div className="flex gap-2 text-white justify-center items-center ">
+    ? categorize = <div className="flex gap-2 text-white justify-center items-center rubik">
       {categoriesList.map(category => (
           selectedCategories.includes(category)?
           <div onClick={()=>handleCatClick(category)} className="p-2 border-white rounded-4xl text-white bg-[#0285ff] min-w-fit  border cursor-pointer">{category}</div>
@@ -447,7 +368,7 @@ const App = () => {
     : null;
 
   return (
-    <div className="xx max-md:scale-75 md:scale-90 flex flex-col gap-4 top-8 h-screen">
+    <div className="xx max-md:scale-75 md:scale-90 flex flex-col gap-4 top-8 h-screen rubik">
       {categorize}
       {loadingIcon}
       {disquestion}

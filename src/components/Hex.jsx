@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "../App.css";
 
-
 const Hex = ({
   index,
   arabicLetters,
@@ -11,7 +10,7 @@ const Hex = ({
   greenHex,
   orangeHex,
   setOrangeHex,
-  setBtn
+  setBtn,
 }) => {
   const gridGraph = {
     // Index 0 is connected to indices 1, 7, and 8
@@ -43,7 +42,6 @@ const Hex = ({
     32: [25, 26, 31, 33, 24], // Index 32 is connected to indices 25, 26, 31, and 33
     33: [26, 32], // Index 33 is connected to indices 26, 27, and 32
   };
-
 
   function isConnectedPath(indexes, gridGraph, color) {
     // Define which nodes are start and target nodes
@@ -107,12 +105,12 @@ const Hex = ({
 
   useEffect(() => {
     if (isConnectedPath(greenHex, gridGraph, "green")) {
-      setBtn(true)
+      setBtn(true);
       console.log("الاخضر فاز");
     } else if (isConnectedPath(redHex, gridGraph, "red")) {
-      setBtn(true)
+      setBtn(true);
     } else {
-      setBtn(false)
+      setBtn(false);
       winner;
     }
   }, [redHex, greenHex]);
@@ -175,14 +173,11 @@ const Hex = ({
   }
 
   return numbers.includes(index) ? (
-
-          <div className="mt-6">{hex1}</div>
-
-
+    <div className="mt-6 text-center">{hex1}</div>
   ) : (
-          <div onClick={() => handleClick()} className="">{hex1}</div>
-
-
+    <div onClick={() => handleClick()} className="text-center">
+      {hex1}
+    </div>
   );
 };
 
