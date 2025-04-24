@@ -25,6 +25,7 @@ function Form({ route, method }) {
                 localStorage.setItem(ACCESS_TOKEN,res.data.access)
                 localStorage.setItem(REFRESH_TOKEN,res.data.refresh)
                 navigate("/horof")
+                location.reload();
             }else{
                 navigate("/horof/login") 
             }
@@ -36,7 +37,8 @@ function Form({ route, method }) {
 
     }
     return <div className="rubik"><form onSubmit={handleSubmit} className="form-container">
-        <h1 className="text-4xl mb-2">
+    <h1 className="text-4xl mb-10 font-bold">لعبة حروف و ألوف</h1>
+        <h1 className="text-2xl mb-2">
             {name} 
 
         </h1>
@@ -55,6 +57,7 @@ function Form({ route, method }) {
             placeholder="كلمة المرور"
             autoComplete="on"
         />
+        {loading && <LoadingIndicator />}
         <button className="form-button" type="submit">
             {name}
         </button>

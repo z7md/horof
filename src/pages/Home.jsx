@@ -212,11 +212,12 @@ const Home = () => {
     : null;
 
   return (
-    <div className="xx max-md:scale-75 md:scale-90 flex flex-col gap-4 top-8 h-screen rubik">
+    <div className="xx max-md:scale-75 md:scale-115 md:justify-center items-center flex flex-col gap-4 top-8 h-screen rubik">
       {/* {categorize} */}
       {loadingIcon}
       {disquestion}
-      <div className="container grid-cols-7 grid-rows-7">
+      <div className="flex justify-center items-center flex-col">
+      <div className="container grid-cols-7 grid-rows-7 ">
         <div className={`bg-red-500 hexagon select-none`}></div>
         <div className={`bg-green-500 hexagon select-none mt-6`}></div>
         <div className={`bg-green-500 hexagon select-none`}></div>
@@ -272,6 +273,7 @@ const Home = () => {
         <Confetti Btn={Btn} />
       </div>
       <Footer/>
+      </div>
     </div>
   );
 };
