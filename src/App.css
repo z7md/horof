@@ -18,8 +18,8 @@
 
 
 .hexagon {
-  width: 65px; /* same as hexagon width */
-  height: 45px; /* same as hexagon height */
+  width: 65px;
+  height: 48px;
   /* clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
   clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
   display: flex;
@@ -30,10 +30,10 @@
 }
 .container {
   display: grid;
-    width: 350px;
-    height:340px;
-    grid-gap: 0.5px;
-    gap: 0.5px;
+  width: 343px;
+  height: 336px;
+    /* grid-gap: 0.5px;
+    gap: 0.5px; */
 }
 
 .xx{

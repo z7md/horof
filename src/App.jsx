@@ -1,15 +1,15 @@
 import { react } from "react";
-import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom"
+import {BrowserRouter,Routes,Route,Navigate,HashRouter} from "react-router-dom"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 
-function Logout(params) {
+function Logout() {
   
   localStorage.clear()
-  return <Navigate to="/horof/login"/>
+  return <Navigate to="/login"/>
 }
 
 function RegisterAndLogout() {
@@ -19,10 +19,10 @@ function RegisterAndLogout() {
 
 function App () {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/horof">
     <Routes>
       <Route
-      path="/horof"
+      path="/"
       element={
         <ProtectedRoute>
           <Home/>
@@ -31,10 +31,10 @@ function App () {
        
       }
       />
-      <Route path="/horof/login" element={<Login/>}/>
-      <Route path="/horof/logout" element={<Logout/>}/>
-      <Route path="/horof/register" element={<RegisterAndLogout/>}/>
-      <Route path="/horof/*" element={<NotFound/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/logout" element={<Logout/>}/>
+      <Route path="/register" element={<RegisterAndLogout/>}/>
+      <Route path="/*" element={<NotFound/>}/>
 
     </Routes>
     </BrowserRouter>

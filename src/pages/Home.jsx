@@ -140,8 +140,8 @@ const Home = () => {
   }, []); // Empty dependency array means this runs only once on mount
   let answerDiv;
   displayAnswer
-    ? (answerDiv = <p>{answer}</p>)
-    : (answerDiv = <p className="hidden">{answer}</p>);
+    ? (answerDiv = <p className="text-2xl font-bold text-center">{answer}</p>)
+    : (answerDiv = <p className="hidden text-2xl font-bold text-center">{answer}</p>);
   let askButton;
   orangeHex[0]
     ? (askButton = (
@@ -183,7 +183,7 @@ const Home = () => {
           أظهر الاجابة
         </button>
         {answerDiv}
-        <p className="min-w-fit">{question}</p>
+        <p className="min-w-fit text-2xl font-bold text-center">{question}</p>
         <button
           className="bg-blue-500 py-2 rounded-3xl text-xl text-white px-4 cursor-pointer min-w-fit"
           onClick={deleteQuestion}
@@ -212,7 +212,7 @@ const Home = () => {
     : null;
 
   return (
-    <div className="xx max-md:scale-75 md:scale-115 md:justify-center items-center flex flex-col gap-4 top-8 h-screen rubik">
+    <div className="xx max-md:scale-75 md:scale-115 md:justify-center items-center flex flex-col gap-0 top-8 h-screen rubik">
       {/* {categorize} */}
       {loadingIcon}
       {disquestion}
@@ -242,16 +242,16 @@ const Home = () => {
               setBtn={setBtn}
             />
           ) : (
-            <div className={`bg-red-500 hexagon select-none`}></div>
+            <div className={`bg-red-500 hexagon select-none m-0`}></div>
           );
         })}
 
-        <div className={`bg-red-500 hexagon select-none`}></div>
-        <div className={`bg-green-500 hexagon select-none mt-6`}></div>
-        <div className={`bg-green-500 hexagon select-none`}></div>
-        <div className={`bg-green-500 hexagon select-none mt-6`}></div>
-        <div className={`bg-green-500 hexagon select-none`}></div>
-        <div className={`bg-green-500 hexagon select-none mt-6`}></div>
+        <div className={`bg-red-500 hexagon select-none m-0`}></div>
+        <div className={`bg-green-500 hexagon select-none mt-6 m-0`}></div>
+        <div className={`bg-green-500 hexagon select-none m-0`}></div>
+        <div className={`bg-green-500 hexagon select-none mt-6 m-0`}></div>
+        <div className={`bg-green-500 hexagon select-none m-0`}></div>
+        <div className={`bg-green-500 hexagon select-none mt-6 m-0`}></div>
         <div className={`bg-red-500 hexagon select-none`}></div>
       </div>
       <div className="flex justify-center items-center gap-2 text-center max-md:scale-75">

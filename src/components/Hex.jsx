@@ -173,9 +173,9 @@ const Hex = ({
   }
 
   return numbers.includes(index) ? (
-    <div className="mt-6 text-center">{hex1}</div>
+    <div className="mt-6 text-center m-0 p-0">{hex1}</div>
   ) : (
-    <div onClick={() => handleClick()} className="text-center">
+    <div onClick={() => handleClick()} className="text-center m-0 p-0">
       {hex1}
     </div>
   );
