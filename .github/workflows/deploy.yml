@@ -31,5 +31,5 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages  # The branch to deploy to
-        folder: dist  # This is where your Vite build outputs the files
+        folder: haroof/dist  # This is where your Vite build outputs the files
         token: ${{ secrets.GH_TOKEN }}  # Your GitHub Token stored in Secrets
