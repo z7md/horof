@@ -21,6 +21,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Clean the dist folder
+      run: rm -rf dist  # Optional: Clean the dist folder before building
+
     - name: Build the app
       run: npm run build  # This will use 'vite build' under the hood
 
