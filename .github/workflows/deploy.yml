@@ -1,32 +1,23 @@
-name: Deploy React App to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main  # Trigger deployment on push to the 'main' branch
+    branches: ["main"]  # or "master" if your default branch is master
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'  # Specify the Node.js version you're using
+      - name: Install & Build 🔧
+        run: |
+          npm install
+          npm run build  # This generates the `dist` folder
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build the app
-        run: npm run build  # This will use 'vite build' under the hood
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # The branch to deploy to
-          folder: dist  # Path to the 'dist' folder
-          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub Token stored in Secrets
+          branch: gh-pages  # The branch GitHub Pages uses (usually `gh-pages` or `main`)
+          folder: dist      # Vite's output folder
