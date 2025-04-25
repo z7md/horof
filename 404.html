@@ -6,7 +6,8 @@
   <title>Page Not Found</title>
   <script>
     // This script will ensure that any invalid URLs are sent to your index.html
-    window.location.replace(window.location.origin + window.location.pathname);
+    localStorage.clear();
+    window.location.replace(window.location.origin + "/");
   </script>
 </head>
 <body>
