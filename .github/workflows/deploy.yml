@@ -3,7 +3,7 @@ name: Deploy React app to GitHub Pages
 on:
   push:
     branches:
-      - main  # Or your default branch
+      - main  # Or your default branch (e.g., master)
 
 jobs:
   deploy:
@@ -22,11 +22,11 @@ jobs:
       run: npm install
 
     - name: Build the app
-      run: npm run build
+      run: npm run build  # This will use 'vite build' under the hood
 
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages  # The branch to deploy to
-        folder: dist  # The folder to deploy (after `npm run build`)
+        folder: dist  # This is where your Vite build outputs the files
         token: ${{ secrets.GH_TOKEN }}  # Your GitHub Token stored in Secrets

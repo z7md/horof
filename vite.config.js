@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [react(),
     tailwindcss(),
   ],
+  build: {
+    outDir: 'dist',  // Ensure this is set to 'dist'
+  },
   base:"/horof"
 })
