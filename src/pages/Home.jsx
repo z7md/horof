@@ -4,6 +4,11 @@ import OpenAI from "openai";
 import { Confetti } from "../Confetti";
 import { Footer } from "../components/Footer";
 import api from "../api"
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { IoReloadSharp } from "react-icons/io5";
+import { IoSearchOutline } from "react-icons/io5";
 const apiKey = import.meta.env.VITE_SOME_KEY;
 const BASE_URL = import.meta.env.VITE_URL_KEY
 const MODEL = import.meta.env.MODEL_KEY
@@ -80,7 +85,10 @@ const Home = () => {
   };
 
   async function generateQuestionFromLetter(letter) {
+    setQuestion("")
+    setAnswer("")
     setIsLoading(true)
+
     const formattedCat = selectedCategories.map(c => `"${c}"`).join(", ")
     try{
       console.log(letter,formattedCat)
@@ -140,8 +148,8 @@ const Home = () => {
   }, []); // Empty dependency array means this runs only once on mount
   let answerDiv;
   displayAnswer
-    ? (answerDiv = <p className="text-2xl font-bold text-center">{answer}</p>)
-    : (answerDiv = <p className="hidden text-2xl font-bold text-center">{answer}</p>);
+    ? (answerDiv = <p className="text-2xl font-bold text-center inline">{answer}</p>)
+    : (answerDiv = <p className="hidden text-2xl font-bold text-center ">{answer}</p>);
   let askButton;
   orangeHex[0]
     ? (askButton = (
@@ -149,7 +157,8 @@ const Home = () => {
         className="mt-12 bg-blue-500 py-2 rounded-3xl text-xl text-white px-4 cursor-pointer min-w-fit"
         onClick={() => generateQuestionFromLetter(orangeHex[1])}
       >
-        ابحث عن سؤالًا
+        
+        <IoSearchOutline/> 
       </button>
     ))
     : null;
@@ -175,33 +184,45 @@ const Home = () => {
   let disquestion;
   question
     ? (disquestion = (
-      <div className="text-white flex gap-4 justify-center items-center max-md:scale-75">
-        <button
-          className="bg-blue-500 py-2 rounded-3xl text-xl text-white px-4 cursor-pointer min-w-fit"
+      <div className="text-white flex gap-4 justify-center items-center  mt-[40px] max-md:max-w-[250px]">
+      <div className="w-9/10 text-right">
+      <p className="p-2 text-2xl  text-center inline">{question}  {answerDiv}</p>
+      </div>
+      <div className="flex  flex-col gap-2 justify-center items-center w-1/10">
+
+      <button
+          className="bg-blue-500 py-2 rounded-3xl text-2xl text-white px-4 cursor-pointer"
           onClick={handleDisplayAnswer}
         >
-          أظهر الاجابة
+        {displayAnswer?<FaRegEye/>:<FaRegEyeSlash/>}
         </button>
-        {answerDiv}
-        <p className="min-w-fit text-2xl font-bold text-center">{question}</p>
         <button
-          className="bg-blue-500 py-2 rounded-3xl text-xl text-white px-4 cursor-pointer min-w-fit"
+          className="bg-blue-500 py-2 rounded-3xl text-2xl text-white px-4 cursor-pointer"
           onClick={deleteQuestion}
         >
-          حذف السؤال
+          <FaRegTrashAlt/> 
         </button>
+
+
+      </div>
+
+        
+        
+
       </div>
     ))
-    : null;
+    :    <div className="w-[800px] h-[60px] mt-[40px]">
+
+  </div>;
 
   let loadingIcon;
   isLoading
-    ? (loadingIcon = <div className="text-white text-xl font-serif">
+    ? (loadingIcon = <div className="text-white text-xl font-serif mt-[40px]">
 
 
       <span className="inline-flex space-x-1">
-        <span className="animate-bounce [animation-delay:.1s]">
-          Loading
+        <span className="animate-bounce [animation-delay:.1s] ق">
+          بحث
         </span>
         <span className="animate-bounce [animation-delay:.1s]">.</span>
         <span className="animate-bounce [animation-delay:.2s]">.</span>
@@ -212,12 +233,13 @@ const Home = () => {
     : null;
 
   return (
-    <div className="xx max-md:scale-75 md:scale-115 md:justify-center items-center flex flex-col gap-0 top-8 h-screen rubik">
-      {/* {categorize} */}
+    // <div className="xx max-md:scale-105 md:scale-135 md:justify-center items-center flex flex-col gap-0 top-8 rubik max-h-screen max-w-screen">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-800 via-gray-900 to-gray-900 rubik flex-col">  
+    {/* {categorize} */}
       {loadingIcon}
       {disquestion}
       <div className="flex justify-center items-center flex-col">
-      <div className="container grid-cols-7 grid-rows-7 ">
+      <div className="container grid-cols-7 grid-rows-7 mt-[50px]">
         <div className={`bg-red-500 hexagon select-none`}></div>
         <div className={`bg-green-500 hexagon select-none mt-6`}></div>
         <div className={`bg-green-500 hexagon select-none`}></div>
@@ -254,25 +276,28 @@ const Home = () => {
         <div className={`bg-green-500 hexagon select-none mt-6 m-0`}></div>
         <div className={`bg-red-500 hexagon select-none`}></div>
       </div>
-      <div className="flex justify-center items-center gap-2 text-center max-md:scale-75">
+      <div className="flex justify-center items-center gap-2 text-center">
+      {askButton}
         <button
           onClick={assignLettersToHexagons}
           className="mt-12 bg-blue-500 py-2 rounded-3xl text-xl text-white px-4 cursor-pointer min-w-fit"
         >
-          ترتيب الحروف
+          <IoReloadSharp/> 
         </button>
-        <button
+         {/* Button to reset the game without changing letter places */}
+        {/* <button
           onClick={refresh}
           className="mt-12 bg-blue-500 py-2 rounded-3xl text-xl text-white px-4 cursor-pointer  min-w-fit"
         >
-          إعادة اللعبة
-        </button>
-        {askButton}
+          <IoReloadSharp/>
+        </button> */}
+        
       </div>
+     <Footer/>
       <div className=" ml-[10%] flex justify-center items-center w-full">
         <Confetti Btn={Btn} />
       </div>
-      <Footer/>
+      
       </div>
     </div>
   );
