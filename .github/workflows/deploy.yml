@@ -28,5 +28,5 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages  # The branch to deploy to
-        folder: build  # The folder to deploy (after `npm run build`)
+        folder: dist  # The folder to deploy (after `npm run build`)
         token: ${{ secrets.GH_TOKEN }}  # Your GitHub Token stored in Secrets
