@@ -19,7 +19,7 @@ function RegisterAndLogout() {
 
 function App () {
   return (
-    <BrowserRouter basename="/horof">
+    <BrowserRouter>
     <Routes>
       <Route
       path="/"
