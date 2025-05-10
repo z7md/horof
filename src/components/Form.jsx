@@ -10,6 +10,7 @@ function Form({ route, method }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // حالة للخطأ
   const navigate = useNavigate();
 
   const name = method === "login" ? "تسجيل دخول" : "تسجيل جديد";
@@ -17,10 +18,10 @@ function Form({ route, method }) {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+    setErrorMessage(""); // مسح الرسالة عند المحاولة من جديد
 
     try {
       const res = await api.post(route, { username, password });
-      console.log({ username, password });
       if (method === "login") {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -30,7 +31,11 @@ function Form({ route, method }) {
         navigate("/login");
       }
     } catch (error) {
-      alert(error);
+      if (error.response && error.response.status === 401) {
+        setErrorMessage("اسم المستخدم أو كلمة المرور غير صحيحة.");
+      } else {
+        setErrorMessage("حدث خطأ أثناء تسجيل الدخول. حاول مرة أخرى.");
+      }
     } finally {
       setLoading(false);
     }
@@ -59,6 +64,9 @@ function Form({ route, method }) {
           />
           {loading && (
             <div className="text-center text-indigo-400 font-bold">جاري التحميل...</div>
+          )}
+          {errorMessage && (
+            <div className="text-center text-red-400 font-bold">{errorMessage}</div>
           )}
           <button
             className="w-full py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300"
